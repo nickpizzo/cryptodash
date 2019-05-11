@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 import { AppContext } from "./AppProvider";
 
@@ -24,14 +24,11 @@ const ControlButtonEl = styled.div`
 `;
 
 function ControlButton({ name }) {
+  const { page, setPage } = useContext(AppContext);
   return (
-    <AppContext.Consumer>
-      {({ page, setPage }) => (
-        <ControlButtonEl active={page === name} onClick={() => setPage(name)}>
-          {name}
-        </ControlButtonEl>
-      )}
-    </AppContext.Consumer>
+    <ControlButtonEl active={page === name} onClick={() => setPage(name)}>
+      {name}
+    </ControlButtonEl>
   );
 }
 
