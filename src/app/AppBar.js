@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { AppContext } from "./AppProvider";
 
 const Logo = styled.div`
   font-size: 1.5em;
@@ -17,12 +18,21 @@ const ControlButtonEl = styled.div`
   ${props =>
     props.active &&
     css`
+      text-decoration: underline;
       text-shadow: 0 0 60px #03ff03;
     `}
 `;
 
-function ControlButton({ name, active }) {
-  return <ControlButtonEl active={active}>{name}</ControlButtonEl>;
+function ControlButton({ name }) {
+  return (
+    <AppContext.Consumer>
+      {({ page, setPage }) => (
+        <ControlButtonEl active={page === name} onClick={() => setPage(name)}>
+          {name}
+        </ControlButtonEl>
+      )}
+    </AppContext.Consumer>
+  );
 }
 
 export default function AppBar() {
