@@ -7,11 +7,15 @@ import HighchartsTheme from "./HighchartsTheme";
 ReactHighcharts.Highcharts.setOptions(HighchartsTheme);
 
 export default function PriceChart() {
-  const { currentFavorite, setCurrentFavorite } = useContext(AppContext);
+  const { historical } = useContext(AppContext);
 
   return (
     <Tile>
-      <ReactHighcharts config={HighchartsConfig()} />
+      {historical ? (
+        <ReactHighcharts config={HighchartsConfig(historical)} />
+      ) : (
+        <div>Loading historical data...</div>
+      )}
     </Tile>
   );
 }
