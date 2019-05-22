@@ -34,12 +34,13 @@ const PriceTileStyled = styled(SelectableTile)`
   ${props =>
     props.compact &&
     css`
-      display: grid;
-      ${fontSize3}}
-      grid-gap: 5px;
+      ${fontSize3}
       grid-template-columns: repeat(3, 1fr);
+      display: grid;
+      grid-gap: 5px;
       justify-items: right;
     `}
+
   ${props =>
     props.currentFavorite &&
     css`
